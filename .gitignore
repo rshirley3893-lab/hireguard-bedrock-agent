@@ -1,0 +1,4 @@
+config.json
+lambda_function.zip
+__pycache__/
+*.pyc
