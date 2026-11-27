@@ -1,5 +1,7 @@
 # HireGuard: A Poisoned Resume Tried to Hire Itself as Principal Engineer
 
+**Live Interactive Control Room & Verified AWS Attack Lab:** https://rshirley3893-lab.github.io/hireguard-bedrock-agent/
+
 **HireGuard** is a 4-layer defense-in-depth recruiting operations agent built on the **Amazon Bedrock AgentCore Managed Harness**. It screens candidates, enforces strict interview rubric thresholds, blocks indirect prompt injections hidden inside candidate resumes, prevents PII exfiltration, and enforces human sign-off on irreversible actions.
 
 ## Architecture (4-Layer Control Stack)
