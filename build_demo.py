@@ -188,8 +188,11 @@ html = r"""<!DOCTYPE html>
   /* Architecture Diagram + 2x2 Grid */
   .diagram-card {
     background: var(--panel); border: 1px solid var(--border);
-    border-radius: 12px; padding: 18px; margin-bottom: 16px; overflow-x: auto;
+    border-radius: 12px; padding: 18px; margin-bottom: 16px; overflow-x: auto; -webkit-overflow-scrolling: touch;
   }
+  .diagram-card svg { min-width: 760px; display: block; }
+  .mobile-hint { display: none; font-size: 12px; color: var(--cyan); margin-bottom: 8px; }
+  @media (max-width: 760px) { .mobile-hint { display: block; } }
   .arch-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
   @media (max-width: 720px) { .arch-grid { grid-template-columns: 1fr; } }
   .arch-card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
@@ -317,7 +320,8 @@ html = r"""<!DOCTYPE html>
   </div>
 
   <div class="diagram-card">
-    <div class="box-label" style="margin-bottom:10px;">Live AWS Request &amp; Enforcement Flow (ap-southeast-2)</div>
+    <div class="box-label" style="margin-bottom:8px;">Live AWS Request &amp; Enforcement Flow (ap-southeast-2)</div>
+    <div class="mobile-hint">Swipe horizontally to inspect full 4-layer diagram &rarr;</div>
     <svg viewBox="0 0 980 285" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="HireGuard 4-Layer AWS Architecture Flowchart">
       <defs>
         <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -503,7 +507,7 @@ function renderDetail(idx) {
     </div>
     <div class="telemetry-bar">
       <span><strong>Session ID:</strong> <code>${tel.session_id || "Blocked pre-harness (Layer 1)"}</code></span>
-      <span><strong>Latency:</strong> ${tel.latency_s ? tel.latency_s + "s" : "< 0.4s (Guardrail)"}</span>
+      <span><strong>Latency:</strong> ${tel.latency_s != null ? Number(tel.latency_s).toFixed(2) + "s" : "< 0.4s (Guardrail)"}</span>
       <span><strong>Tokens:</strong> ${tok || 0}</span>
     </div>
   `;
@@ -528,7 +532,7 @@ renderDetail(1);
 document.getElementById("score-body").innerHTML = REPORT.tests.map(t => {
   const primary = t.events.map(e => `${e.layer} (${e.status})`).join(" → ");
   const tel = t.telemetry || {};
-  const perf = tel.latency_s ? `${tel.latency_s}s / ${(tel.usage && tel.usage.totalTokens) || 0} tok` : "Pre-LLM Guardrail";
+  const perf = tel.latency_s != null ? `${Number(tel.latency_s).toFixed(2)}s / ${(tel.usage && tel.usage.totalTokens) || 0} tok` : "Pre-LLM Guardrail";
   return `
     <tr>
       <td><strong>#${t.id}</strong></td>
