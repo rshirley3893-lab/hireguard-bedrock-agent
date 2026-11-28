@@ -75,11 +75,11 @@ html = r"""<!DOCTYPE html>
     color: var(--cyan); font-weight: 700; margin-bottom: 14px;
     font-family: "JetBrains Mono", monospace;
   }
-  h1 { font-size: clamp(2rem, 4vw, 3.1rem); line-height: 1.18; letter-spacing: -0.025em; max-width: 900px; font-weight: 800; }
+  h1 { font-size: clamp(2rem, 4vw, 3.1rem); line-height: 1.18; letter-spacing: -0.025em; max-width: 100%; font-weight: 800; }
   .slogan-mono {
     display: inline-block; margin-top: 6px;
     font-family: "JetBrains Mono", monospace;
-    font-weight: 700; font-size: clamp(1.65rem, 3.3vw, 2.55rem);
+    font-weight: 700; font-size: clamp(1.35rem, 2.7vw, 2.25rem);
     color: var(--cyan); letter-spacing: -0.02em;
   }
   .cursor {
@@ -240,7 +240,7 @@ html = r"""<!DOCTYPE html>
   <div class="eyebrow">Amazon Bedrock AgentCore Managed Harness • ap-southeast-2</div>
   <h1>
     Trust is not a prompt.<br/>
-    <span class="slogan-mono">It’s a 4-layer AWS execution boundary.<span class="cursor"></span></span>
+    <span class="slogan-mono">It’s a 4-layer AWS execution <span style="white-space:nowrap;">boundary.<span class="cursor"></span></span></span>
   </h1>
   <p class="sub">
     HireGuard screens untrusted candidate resumes—including indirect prompt injections, Base64 payloads, spoofed rubric scores, and multi-turn escalations—enforcing deterministic rules across Bedrock Guardrails, Scoped IAM Explicit Deny, server-side Lambda Policy Gates, and Pre-Execution Human Approval.
