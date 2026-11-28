@@ -69,7 +69,7 @@ html = r"""<!DOCTYPE html>
   }
 
   /* Hero */
-  header { padding: 52px 0 32px; }
+  header.wrap { padding: 44px 22px 28px; }
   .eyebrow {
     font-size: 12px; text-transform: uppercase; letter-spacing: 1.4px;
     color: var(--cyan); font-weight: 700; margin-bottom: 14px;
